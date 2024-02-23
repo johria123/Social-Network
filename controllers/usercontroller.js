@@ -1,17 +1,17 @@
 const { ObjectId } = require('mongoose').Types;
-const { Thought, User } = require('../models');
+const { Thought, user } = require('../models');
 
-// Aggregate function to get the number of students overall
+
 const headCount = async () => {
   const numberOfthought = await Thought.aggregate()
     .count('thoughtCount');
   return numberOfthought;
 }
 
-// Aggregate function for getting the overall grade using $avg
+
 const grade = async (thoughtId) =>
   Thought.aggregate([
-    // only include the given student by using $match
+    
     { $match: { _id: new ObjectId(thoughtIdId) } },
     {
       $unwind: '$assignments',
@@ -25,10 +25,10 @@ const grade = async (thoughtId) =>
   ]);
 
 module.exports = {
-  // Get all students
+  
   async getThought(req, res) {
     try {
-      const students = await thought.find();
+      const thought = await thought.find();
 
       const thoughtObj = {
         thought,
@@ -41,7 +41,7 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
-  // Get a single student
+
   async getSingleThought(req, res) {
     try {
       const thought = await Thought.findOne({ _id: req.params.thoughtId })
@@ -60,7 +60,7 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
-  // create a new student
+
   async createThought(req, res) {
     try {
       const thought = await thought.create(req.body);
@@ -69,10 +69,10 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Delete a student and remove them from the course
+  
   async deleteThought(req, res) {
     try {
-      const thought = await Thought.findOneAndRemove({ _id: req.params.studentId });
+      const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
 
       if (!thought) {
         return res.status(404).json({ message: 'No such thought exists' });
@@ -97,7 +97,7 @@ module.exports = {
     }
   },
 
-  // Add an assignment to a student
+  
   async addAssignment(req, res) {
     console.log('You are adding an assignment');
     console.log(req.body);
@@ -120,11 +120,11 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Remove assignment from a student
+  
   async removeAssignment(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
-        { _id: req.params.studentId },
+        { _id: req.params.thoughtId },
         { $pull: { assignment: { assignmentId: req.params.assignmentId } } },
         { runValidators: true, new: true }
       );

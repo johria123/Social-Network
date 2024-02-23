@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-// Schema to create a course model
+
 const UserSchema = new Schema(
   {
     userName: {
@@ -17,7 +17,7 @@ const UserSchema = new Schema(
     },
     endDate: {
       type: Date,
-      // Sets a default value of 12 weeks from now
+     
       default: () => new Date(+new Date() + 84 * 24 * 60 * 60 * 1000),
     },
     thought: [

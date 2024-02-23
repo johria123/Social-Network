@@ -19,5 +19,5 @@ User related functionalities include retrieving, creating, updating, and deletin
     2. install dependencies
     3. start the application
 
-![screenshot](./assets/Screenshot%202024-01-10%20at%2010.05.17%20PM.png)
-[do not forget to visit my page to view the application] (https://github.com/johria123/module-6HW)
+
+[do not forget to visit my page to view the application] (https://github.com/johria123/Social-Network)
